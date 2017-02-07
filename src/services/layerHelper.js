@@ -81,7 +81,8 @@ ngeo.LayerHelper.prototype.createBasicWMSLayer = function(sourceURL,
   const source = new ol.source.ImageWMS({
     url: sourceURL,
     params,
-    serverType: olServerType
+    serverType: olServerType,
+    crossOrigin: 'anonymous'
   });
   if (opt_params) {
     source.updateParams(opt_params);
@@ -119,7 +120,8 @@ ngeo.LayerHelper.prototype.createWMTSLayerFromCapabilitites = function(capabilit
     }
     if (result) {
       const options = ol.source.WMTS.optionsFromCapabilities(result, {
-        layer: layerName
+        layer: layerName,
+        crossOrigin: 'anonymous'
       });
       const source = new ol.source.WMTS(options);
       if (opt_dimensions && !ol.obj.isEmpty(opt_dimensions)) {
